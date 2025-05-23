@@ -12,12 +12,13 @@ public class Program
             Console.WriteLine("1. Add");
             Console.WriteLine("2. Show forward");
             Console.WriteLine("3. Show backward");
-            Console.WriteLine("4. Show mode(s)");
-            Console.WriteLine("5. Show graph");
-            Console.WriteLine("6. Exists");
-            Console.WriteLine("7. Remove one occurrence");
-            Console.WriteLine("8. Remove all occurrences");
-            Console.WriteLine("9. Clear list");
+            Console.WriteLine("4. Sort descending");
+            Console.WriteLine("5. Show mode(s)");
+            Console.WriteLine("6. Show graph");
+            Console.WriteLine("7. Exists");
+            Console.WriteLine("8. Remove one occurrence");
+            Console.WriteLine("9. Remove all occurrences");
+            Console.WriteLine("10. Clear list");
             Console.WriteLine("0. Exit");
             Console.Write("Enter an option: ");
             if (int.TryParse(Console.ReadLine(), out option))
@@ -39,28 +40,32 @@ public class Program
                         list.ShowBackward();
                         break;
                     case 4:
-                        list.ShowModes();
+                        list.SortDescending(); 
+                        Console.WriteLine("List sorted in descending order.");
                         break;
                     case 5:
+                        list.ShowModes();
+                        break;
+                    case 6:
                         Console.WriteLine("Frequency graph:");
                         list.ShowGraph();
                         break;
-                    case 6:
+                    case 7:
                         Console.Write("Enter the element to search: ");
                         string elementToSearch = Console.ReadLine() ?? string.Empty;
                         list.Exists(elementToSearch);
                         break;
-                    case 7:
+                    case 8:
                         Console.Write("Enter the element to remove: ");
                         string elementToRemove = Console.ReadLine() ?? string.Empty;
                         list.RemoveOne(elementToRemove);
                         break;
-                    case 8:
+                    case 9:
                         Console.Write("Enter the element to remove all occurrences: ");
                         string elementToRemoveAll = Console.ReadLine() ?? string.Empty;
                         list.RemoveAll(elementToRemoveAll);
                         break;
-                    case 9:
+                    case 10:
                         list.ClearList();
                         break;
                     case 0:

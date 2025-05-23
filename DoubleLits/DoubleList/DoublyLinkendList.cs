@@ -62,7 +62,7 @@ public class DoubleLinkedList<T> where T : IComparable<T>
                 Console.Write(" <=> ");
             current = current.Next;
         }
-        Console.WriteLine();
+        Console.WriteLine();    
     }
 
     public void ShowBackward()
@@ -84,7 +84,40 @@ public class DoubleLinkedList<T> where T : IComparable<T>
         Console.WriteLine();
 
     }
+    public void SortDescending()
+    {
+        if (head == null || head.Next == null)
+            return;
 
+        List<T> tempList = new();
+        var current = head;
+        while (current != null)
+        {
+            tempList.Add(current.Data);
+            current = current.Next;
+        }
+
+        tempList.Sort((a, b) => b.CompareTo(a)); 
+
+        ClearList();
+
+        foreach (var item in tempList)
+        {
+            var newNode = new DoubleNode<T>(item);
+            if (head == null)
+            {
+                head = tail = newNode;
+            }
+            else
+            {
+                tail!.Next = newNode;
+                newNode.Prev = tail;
+                tail = newNode;
+            }
+        }
+
+        Console.WriteLine("List sorted in descending order.");
+    }
     public void ShowModes()
     {
         Dictionary<T, int> counts = new();
@@ -254,7 +287,7 @@ public class DoubleLinkedList<T> where T : IComparable<T>
         }
 
         Console.WriteLine(removed
-            ? $"All occurrences of were removed {value}."
+            ? $"All occurrences of {value} were removed."
             : $"{value} was not found.");
     }
 
